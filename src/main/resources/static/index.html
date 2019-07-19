@@ -1,0 +1,117 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
+    <link rel="stylesheet" href="http://neo4j-contrib.github.io/developer-resources/language-guides/assets/css/main.css">
+    <link href="https://cdn.bootcss.com/bootstrap-table/1.12.1/bootstrap-table.css" rel="stylesheet">
+
+    <title>Drugs</title>
+</head>
+
+<body>
+<div role="navigation" class="navbar navbar-default navbar-static-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-6">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <form class="navbar-form">
+                            <div>
+<!--                                <input type="text" value="prescription" class="form-control" name="search">-->
+                                <input type="text" value="发热" class="form-control" name="search">
+                            </div>
+                            <button class="btn btn-default" id="btn-search" type="button" onclick="getAllDrug()">Match</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+            <div class="navbar-header col-sm-6 col-md-6">
+                <div class="logo-well">
+                    <a href="https://neo4j.com/developer">
+                        <img src="http://neo4j-contrib.github.io/developer-resources/language-guides/assets/img/logo-white.svg" alt="Neo4j World's Leading Graph Database" id="logo">
+                    </a>
+                </div>
+                <div class="navbar-brand">
+                    <div class="brand">Drug Database Assistance</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-7">
+        <div class="panel panel-default">
+            <div class="panel-heading" id="drugName">Function 1: Match prescription with Indication</div>
+            <div class="panel-heading" id="indication">Function 2: Similar symptom search in Drug Indication</div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-7">
+        <div class="panel panel-default">
+            <table id="drugTable" class="table table-hover"></table>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap-table/1.12.1/bootstrap-table.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap-table/1.12.1/locale/bootstrap-table-zh-CN.min.js"></script>
+
+<script type="text/javascript">
+    const domain = 'http://localhost:8080';
+
+    function getAllDrug() {
+            let query = $("#search").find("input[name=search]").val();
+            console.log(query)
+
+        let columns=[
+            {
+                title:'Drug Category',
+                field:'drugSubgroup',
+                align:'center',
+                valign:'middle'
+            },{
+                title:'Drug Name',
+                field:'drugName',
+                align:'center',
+                valign:'middle'
+            },{
+                title:'Drug Indication',
+                field:'indication',
+                align:'center',
+                valign:'middle'
+            }];
+
+            $.ajax({
+                url: domain + '/drug/getAllDrug',
+                method: 'get',
+                async:false,
+                contentType: 'application/json',
+                dataType: 'json',
+                success: [function (response) {
+                        // alert(response)
+                    $('#drugTable').bootstrapTable({
+                        columns:columns,
+                        height:'550px'
+                    });
+                        $('#drugTable').bootstrapTable('load',response.obj);
+                        console.log(response.obj)
+                    // for (obj of res.obj)
+                        //     $('#drugName').text(obj.drugName)
+                        //     $('#indication').text(obj.indication)
+                  }],
+                error:[function (request, ajaxOptions, exception) {
+                        alert(request.status);
+                        alert(exception);
+                    }]
+            })
+
+        }
+
+</script>
+
+</body>
+</html>
