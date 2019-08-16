@@ -7,7 +7,7 @@
 输出：匹配程度或比较结果明细
 
 ## 知识图谱schema设计
-![](./static/img/schema0715)
+![](./static/img/schema0715.png)
 [参考资源](https://github.com/liuhuanyong/QASystemOnMedicalKG)
 
 ## 外部数据源
