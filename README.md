@@ -8,7 +8,14 @@
 
 ## 知识图谱schema设计
 ![](./static/img/schema0715.png)
-[参考资源](https://github.com/liuhuanyong/QASystemOnMedicalKG)
+
+```
+ 1. 根据系统主要功能，细化处方、症状部分。考虑实体是症状 和疾病种类。反而是科室之类的在第一个步骤中可能不是最关心的部分。
+ 2. 明确为用户和功能，不要做旁支的东西。
+```
+
+
+[参考资源](https://github.com/liuhuanyong/QASystemOnMedicalKG) ： 基于知识图谱的医药问答系统
 
 ## 外部数据源
 
