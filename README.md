@@ -6,8 +6,12 @@
 
 输出：匹配程度或比较结果明细
 
-----
+## 知识图谱schema设计
+![](./static/img/schema0715)
+[参考资源](https://github.com/liuhuanyong/QASystemOnMedicalKG)
 
-暂时使用[药智数据/临床合理用药数据库](https://db.yaozh.com/clinicaldrug?name=&yaoli=&zhuzhi=%E5%8F%91%E7%83%AD&xianghuzuoyong=&yaodong=&first=%E5%85%A8%E9%83%A8)作为外部数据源替代说明书或厂商提供的适应症状描述
+## 外部数据源
 
-[爬虫](./crawler/crawler)
+1. 暂时使用[药智数据/临床合理用药数据库](https://db.yaozh.com/clinicaldrug?name=&yaoli=&zhuzhi=%E5%8F%91%E7%83%AD&xianghuzuoyong=&yaodong=&first=%E5%85%A8%E9%83%A8)作为外部数据源替代说明书或厂商提供的适应症状描述
+
+2. [爬虫](./crawler/crawler)
